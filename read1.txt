@@ -1,8 +1,0 @@
-IOC实现机制：
-1：在类ClassHelper中借助类 ClassUtil找出指定路径下的所有类集合Map<Class<?>,Object> BEAN_MAP。
-2：在类IocHelper中对BEAN_MAP中被注解：Inject标注的实例域进行注入。
-
-
-框架初始化过程：
-3：在ControllerHelper中生成对应的Map<Request,Handler>   ACTION_MAP集合。
-4：在DispatcherServlet中根据对应的请求路径得到对应的相应结果，并返回。
