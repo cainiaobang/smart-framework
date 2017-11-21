@@ -13,7 +13,7 @@ import java.util.Set;
 
 
 public class ControllerHelper {
-    private static final Map<Request,Handler>   ACTION_MAP=new HashMap<Request,Handler>();
+    private static final Map<Integer,Handler>   ACTION_MAP=new HashMap<Integer,Handler>();
     static{
         Set<Class<?>> controllerClassSet=ClassHelper.getControllerClassSet();
         if(!CollectionUtil.isEmpty(controllerClassSet)){
@@ -31,7 +31,7 @@ public class ControllerHelper {
                                     String requestPath=array[1];
                                     Request request=new Request(requestMethod,requestPath);
                                     Handler handler=new Handler(controllerClass,method);
-                                    ACTION_MAP.put(request,handler);
+                                    ACTION_MAP.put(request.hsahCode(),handler);
 
                                 }
                             }
@@ -47,6 +47,6 @@ public class ControllerHelper {
 
     public static Handler getHandler(String requestMethod, String  requestPath){
         Request request=new Request(requestMethod,requestPath);
-        return ACTION_MAP.get(request);
+        return ACTION_MAP.get(request.hsahCode());
     }
 }

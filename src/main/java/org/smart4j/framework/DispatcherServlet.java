@@ -28,23 +28,24 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException{
         HelpLoader.init();
-        //
         ServletContext servletContext=servletConfig.getServletContext();
         ServletRegistration jspservlet=servletContext.getServletRegistration("jsp");
-        jspservlet.addMapping(ConfigHelper.getJspPath()+"*");
+        String jspPath=ConfigHelper.getJspPath();
+        jspservlet.addMapping(jspPath+"*");
         ServletRegistration defaultServlet = servletContext.getServletRegistration("default");
-        defaultServlet.addMapping(ConfigHelper.getAppAssetPath()+"");
+        defaultServlet.addMapping(ConfigHelper.getAppAssetPath()+"*");
     }
 
+
     @Override
-    public void service(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException{
-        String requestMethod =request.getMethod().toLowerCase();
-        String requestPath=request.getPathInfo();
-        Handler handler= ControllerHelper.getHandler(requestMethod,requestPath);
-        if(handler !=null){
-            Class<?> controllerClass = handler.getControllerClass();
-                Object controllerbean= BeanHelper.getBean(controllerClass);
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+                String requestMethod =request.getMethod().toLowerCase();
+                    String requestPath=request.getPathInfo();
+                    Handler handler= ControllerHelper.getHandler(requestMethod,requestPath);
+                    if(handler !=null){
+                        Class<?> controllerClass = handler.getControllerClass();
+                        Object controllerbean= BeanHelper.getBean(controllerClass);
                 Map<String , Object> paramMap=new HashMap<String, Object>();
                 Enumeration<String> paramNames=request.getParameterNames();
                 while(paramNames.hasMoreElements()){
@@ -93,14 +94,11 @@ public class DispatcherServlet extends HttpServlet {
                         writer.write(json);
                         writer.flush();
                         writer.close();
-
                     }
 
                 }
             }
+                }
+       }
 
-
-
-        }
-    }
 }

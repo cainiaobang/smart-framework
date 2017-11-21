@@ -11,8 +11,8 @@ public class View {
         model=new HashMap<String,Object>();
     }
     public View addModel(String key,Object value){
-        model.put(key,value);
-        return this;
+            model.put(key,value);
+            return this;
     }
 
     public String getPath() {
