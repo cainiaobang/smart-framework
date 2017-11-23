@@ -24,10 +24,12 @@ public class TransactionProxy implements Proxy {
             FLAG_HOLDER.set(true);
             try{
                 DataBaseHelper.beginTransaction();
+                System.out.println("begin transaction");
                 LOGGER.debug("begin transaction");
                 result=proxyChain.doProxyChain();
                 DataBaseHelper.commitTransaction();
                 LOGGER.debug("commit tranaction");
+                System.out.println("end transaction");
             }catch(Exception e){
                 DataBaseHelper.rollbackTransaction();
                 LOGGER.debug("rollback transaction");

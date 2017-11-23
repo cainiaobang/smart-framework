@@ -27,7 +27,7 @@ public class DataBaseHelper {
     private static final BasicDataSource DATA_SOURCE;
 
     static {
-        Properties conf = PropsUtil.loadProps("config.properties");
+        Properties conf = PropsUtil.loadProps("smart.properties");
         DRIVER = conf.getProperty("jdbc.driver");
         URL = conf.getProperty("jdbc.url");
         USERNAME = conf.getProperty("jdbc.username");

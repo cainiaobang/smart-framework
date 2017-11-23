@@ -20,6 +20,7 @@ public class BeanHelper {
         return BEAN_MAP;
     }
 
+
     @SuppressWarnings("unchecked")
     public static <T> T getBean(Class<T> cls){
         if(!BEAN_MAP.containsKey(cls)){

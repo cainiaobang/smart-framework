@@ -7,7 +7,7 @@ import org.smart4j.framework.proxy.AspectProxy;
 import java.lang.reflect.Method;
 
 @Aspect(Controller.class)
-public class ControllerAspectTest extends AspectProxy {
+public class ControllerAopTest extends AspectProxy {
     @Override
     public void begin() {
         System.out.println("begin  aop....................................");
