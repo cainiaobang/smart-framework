@@ -5,8 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import org.apache.commons.codec.digest. DigestUtils;
 
-public class CodeUtil {
+public final  class CodeUtil {
     private static final Logger LOGGER= LoggerFactory.getLogger(CodeUtil.class);
 
     public static String encodeURL(String source){
@@ -32,7 +33,8 @@ public class CodeUtil {
         return target;
     }
 
-
-
+   public static String md5(String source){
+        return DigestUtils.md5Hex(source);
+   }
 
 }

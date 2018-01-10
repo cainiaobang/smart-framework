@@ -1,5 +1,5 @@
 AOP的实现过程：
-该项目AOP使用cglib实现动态代理：
+该项目AOP使用cglib实现动态代理.
 
 注解一：
 @Target(ElementType.TYPE)

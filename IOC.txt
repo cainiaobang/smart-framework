@@ -4,5 +4,5 @@ IOC实现机制：
 
 
 框架初始化过程：
-3：在ControllerHelper中生成对应的Map<Request,Handler>   ACTION_MAP集合。
-4：在DispatcherServlet中根据对应的请求路径得到对应的相应结果，并返回。
+3：在Controll相应结果，并返回。erHelper中生成对应的Map<Request,Handler>   ACTION_MAP集合。
+                                            4：在DispatcherServlet中根据对应的请求路径得到对应的

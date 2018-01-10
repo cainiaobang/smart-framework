@@ -43,10 +43,10 @@ public class UploadHelper {
         List<FileParam> fileParamList=new ArrayList<FileParam>();
         try{
             Map<String, List<FileItem>> fileItemListMap=servletFileUpload.parseParameterMap(request);
-            if(!CollectionUtil.isEmpty(fileItemListMap)){
-                for(Map.Entry<String,List<FileItem>> fileItemListEntry:fileItemListMap.entrySet()){
-                    String fieldName=fileItemListEntry.getKey();
-                    List<FileItem> fileItemList=fileItemListEntry.getValue();
+                    if(!CollectionUtil.isEmpty(fileItemListMap)){
+                        for(Map.Entry<String,List<FileItem>> fileItemListEntry:fileItemListMap.entrySet()){
+                            String fieldName=fileItemListEntry.getKey();
+                            List<FileItem> fileItemList=fileItemListEntry.getValue();
                     if(!CollectionUtil.isEmpty(fileItemList)){
                         for(FileItem fileItem:fileItemList){
                             if(fileItem.isFormField()){

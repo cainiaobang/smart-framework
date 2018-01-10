@@ -1,7 +1,5 @@
 package org.smart4j.framework;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.smart4j.framework.Util.*;
 import org.smart4j.framework.Util.classUtil.HelpLoader;
 import org.smart4j.framework.bean.Data;
@@ -18,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/*",loadOnStartup=0)

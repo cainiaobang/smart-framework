@@ -25,6 +25,7 @@ public class DataBaseHelper {
     private static final String PASSWORD;
     private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<Connection>();
     private static final BasicDataSource DATA_SOURCE;
+    public static final QueryRunner QUERY_RUNNER = new QueryRunner();
 
     static {
         Properties conf = PropsUtil.loadProps("smart.properties");
@@ -38,6 +39,10 @@ public class DataBaseHelper {
         DATA_SOURCE.setUsername(USERNAME);
         DATA_SOURCE.setPassword(PASSWORD);
 
+    }
+
+    public static BasicDataSource getDataSource() {
+        return DATA_SOURCE;
     }
 
     public static Connection getConnection() {
@@ -56,8 +61,6 @@ public class DataBaseHelper {
         return conn;
     }
 
-
-    public static final QueryRunner QUERY_RUNNER = new QueryRunner();
 
     public static <T> List<T> queryEntityList(Class<T> entityClass,
                                               String sql, Object... params) {

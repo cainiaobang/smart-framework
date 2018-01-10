@@ -28,7 +28,7 @@ public class Param {
                 String fieldName=formParam.getFieldName();
                 Object fieldValue=formParam.getFieldValue();
                 if(fieldMap.containsKey(fieldName)){
-                    fieldValue=fieldMap.get(fieldName)+StringUtil.SEPARAOR+fieldValue;
+                    fieldValue=fieldMap.get(fieldName)+ StringUtil.SEPARAOR+fieldValue;
                 }
                 fieldMap.put(fieldName,fieldValue);
             }
@@ -68,7 +68,7 @@ public class Param {
     }
 
     public boolean isEmpty(){
-        return CollectionUtil.isEmpty(formParamList)&&CollectionUtil.isEmpty(fileParamList);
+        return CollectionUtil.isEmpty(formParamList)&& CollectionUtil.isEmpty(fileParamList);
     }
 
     public String getString(String name){

@@ -1,11 +1,13 @@
 <%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="BASE" value="${pageContext.request.contextPath}" />
 <html>
 <head>
-<title>客户管理-创建客户</title>
+<title>first page</title>
 </head>
 <body>
-<h1>Hello!</h1>
-<h2>${currentTime}</h2>
-<h1>创建客户界面</h1>
+<h1>first page</h1>
+
 </body>
 </html>
