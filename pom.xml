@@ -7,7 +7,7 @@
     <groupId>org.smart4j</groupId>
     <artifactId>smart-framework</artifactId>
     <version>1.0.0</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,6 +30,15 @@
                 <version>2.18.1</version>
                 <configuration>
                     <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <classesDirectory>target/classes</classesDirectory>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
                 </configuration>
             </plugin>
             <plugin>

@@ -10,6 +10,7 @@ public class Md5CredentialsMatcher implements CredentialsMatcher{
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info){
         String submitted=String.valueOf(((UsernamePasswordToken)token).getPassword());
         String encrypted=String.valueOf(info.getCredentials());
-        return CodeUtil.md5(submitted).equals(encrypted);
+        //return CodeUtil.md5(submitted).equals(encrypted);
+        return submitted.equals(encrypted);
     }
 }

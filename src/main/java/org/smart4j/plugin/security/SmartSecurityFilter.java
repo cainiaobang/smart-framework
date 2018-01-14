@@ -21,6 +21,7 @@ public class SmartSecurityFilter extends ShiroFilter {
         WebSecurityManager webSecurityManager=super.getSecurityManager();
         setRealms(webSecurityManager);
         setCache(webSecurityManager);
+        //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     }
 
     private void setRealms(WebSecurityManager webSecurityManager){
@@ -37,8 +38,8 @@ public class SmartSecurityFilter extends ShiroFilter {
                     }
                 }
                 RealmSecurityManager realmSecurityManager=(RealmSecurityManager)webSecurityManager;
-                realmSecurityManager.setRealms(realms);
-            }
+            realmSecurityManager.setRealms(realms);
+        }
         }
     }
 
