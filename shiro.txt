@@ -1,0 +1,15 @@
+对原有的shiro框架进行了封装，用户只需在classpath下配置三个文件：log4j.properties,smart.properties,smart-security.ini
+并在数据库中存入对应的用户名与密码，即可实现简单的shiro应用。
+
+具体封装过程：
+
+1 在resource目录下，建立META-INF目录，建立service目录，并建立文件：javax.servlet.ServletContainerInitializer，
+实现初始化加载：org.smart4j.plugin.security.SmartSecurityPlugin类。
+
+2 在SmartSecurityPlugin类中，加载jdbcRealm或者 SmartCustomRealm。
+   jdbcRealm与SmartCustomRealm都是数据源，采用了不同的封装形式。
+   本来在代码中对原有的jdbcRealm进行了封装，但是因为对字符加密方法不熟悉，出现了bug, 所有改用原有的jdbcRealm.
+    对SmartCustomRealm的应用,需要用户实现 SmartSecurity接口。
+	具体的使用实例也在github的smart-framework-test仓库中。
+	
+3 在 SecurityHelper中提供了logout()与login()方法。
