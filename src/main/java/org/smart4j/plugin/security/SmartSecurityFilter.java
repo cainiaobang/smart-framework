@@ -1,12 +1,16 @@
 package org.smart4j.plugin.security;
 
+
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.CachingSecurityManager;
 import org.apache.shiro.mgt.RealmSecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.servlet.ShiroFilter;
+import org.smart4j.framework.helper.DataBaseHelper;
+import org.smart4j.plugin.security.password.Md5CredentialsMatcher;
 import org.smart4j.plugin.security.realm.SmartCustomRealm;
 import org.smart4j.plugin.security.realm.SmartJdbcRealm;
 
@@ -21,7 +25,6 @@ public class SmartSecurityFilter extends ShiroFilter {
         WebSecurityManager webSecurityManager=super.getSecurityManager();
         setRealms(webSecurityManager);
         setCache(webSecurityManager);
-        //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     }
 
     private void setRealms(WebSecurityManager webSecurityManager){
@@ -44,7 +47,14 @@ public class SmartSecurityFilter extends ShiroFilter {
     }
 
     private void addJdbcRealm(Set<Realm> realms){
-        SmartJdbcRealm smartJdbcRealm=new SmartJdbcRealm();
+       // JdbcRealm smartJdbcRealm=new SmartJdbcRealm();
+        JdbcRealm smartJdbcRealm=new JdbcRealm();
+        smartJdbcRealm.setDataSource(DataBaseHelper.getDataSource());
+        smartJdbcRealm.setAuthenticationQuery("select password from user where name = ?");
+        //super.setUserRolesQuery(SecurityConfig.getJdbcRoleQuery());
+        //  super.setPermissionsQuery(SecurityConfig.getJdbcPermissionQuery());
+        //   super.setPermissionsLookupEnabled(false);
+        //smartJdbcRealm.setCredentialsMatcher(new Md5CredentialsMatcher());
         realms.add(smartJdbcRealm);
     }
 
@@ -61,5 +71,6 @@ public class SmartSecurityFilter extends ShiroFilter {
             cachingSecurityManager.setCacheManager(cacheManager);
         }
     }
+
 
 }

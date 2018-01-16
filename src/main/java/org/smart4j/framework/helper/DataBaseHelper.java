@@ -5,6 +5,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smart4j.framework.Util.CollectionUtil;
@@ -201,7 +202,6 @@ public class DataBaseHelper {
             try {
                 conn.rollback();
                 conn.close();
-                ;
             } catch (SQLException e) {
                 LOGGER.error("rollback transaction failure", e);
                 throw new RuntimeException(e);
@@ -209,6 +209,20 @@ public class DataBaseHelper {
                 CONNECTION_HOLDER.remove();
             }
         }
+    }
+
+    public static  String query(String sql ,String parameter){
+        String  result;
+        try{
+            System.out.println(sql);
+            System.out.println(parameter);
+            Connection conn=getConnection();
+            result=QUERY_RUNNER.query(conn,sql,new ScalarHandler<String>(),parameter);
+            System.out.println(result+"           kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+            return result;
+        }catch(Exception e){
+        }
+        return null;
     }
 
 }

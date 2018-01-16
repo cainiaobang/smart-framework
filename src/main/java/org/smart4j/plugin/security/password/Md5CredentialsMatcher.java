@@ -7,10 +7,13 @@ import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.smart4j.framework.Util.CodeUtil;
 
 public class Md5CredentialsMatcher implements CredentialsMatcher{
-    public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info){
-        String submitted=String.valueOf(((UsernamePasswordToken)token).getPassword());
-        String encrypted=String.valueOf(info.getCredentials());
-        //return CodeUtil.md5(submitted).equals(encrypted);
-        return submitted.equals(encrypted);
-    }
+    public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
+        String submitted = String.valueOf(((UsernamePasswordToken) token).getPassword());
+        String encrypted = String.valueOf(info.getCredentials());
+        System.out.println(submitted + "            " + encrypted + "       " + CodeUtil.md5(submitted).equals(encrypted));
+        return CodeUtil.md5(submitted).equals(encrypted);
+        //return submitted.equals(encrypted);
+
+
+}
 }

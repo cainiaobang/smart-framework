@@ -11,7 +11,7 @@ import java.util.Set;
 public class SmartSecurityPlugin  implements ServletContainerInitializer{
     public void onStartup(Set<Class<?>> handlesTypes, ServletContext servletContext)
         throws ServletException {
-        servletContext.setInitParameter("shiroConfigLocation","classpath:smart-security.ini");
+        servletContext.setInitParameter("shiroConfigLocations","classpath:smart-security.ini");
         System.out.println("ServletContainerInitializer.......................................................................................................");
         servletContext.addListener(EnvironmentLoaderListener.class);
         System.out.println("EnvironmentLoaderListener.class"+"........................");

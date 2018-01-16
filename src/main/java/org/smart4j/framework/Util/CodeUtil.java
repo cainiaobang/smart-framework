@@ -37,4 +37,7 @@ public final  class CodeUtil {
         return DigestUtils.md5Hex(source);
    }
 
+   public static void main(String[] args){
+       System.out.println(DigestUtils.md5Hex("12"));
+   }
 }
