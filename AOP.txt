@@ -21,9 +21,13 @@ public class ControllerAspect extends AspectProxy {....}
 
 实现机制：
 1：切面类需要继承AspectProxy类
-2：读取所有的切面类，对每一个切面类找出其对应的拦截目标类（即对ControllerAspect找出所有被注解：Controller标注的类），生成一个Map<Class<?>, Set<Class<?>>> proxyMap
-   集合，这在方法：createProxyMap()中实现。
-3：对Map<Class<?>,Set<Class<?>>> proxyMap进行转换，生成Map<Class<?>, List<Proxy>>对象，键是要拦截的目标类，值是其对应的切面类对象集合。
-4  在类ProxyManager中，利用cblib生成代理对象，并存放到beanMap中。
+2：读取所有的切面类(就是找出AspectProxy的所有子类的类对象，生成 Set<Class<?>> proxyClassSet集合）
+3  对每一个切面类找出其对应的拦截目标类（即对于切面类：ControllerAspect找出所有被注解：Controller标注的类），生成一个Map<Class<?>, Set<Class<?>>> proxyMap
+   集合，键是代理类，值是目标类集合，一个代理类可以对应多个目标类对象。
+4  对Map<Class<?>,Set<Class<?>>> proxyMap进行转换，生成Map<Class<?>, List<Proxy>>对象，键是要拦截的目标类，值是其对应的切面类对象集合。
+5  在类ProxyManager中，利用cblib生成代理对象，并存放到beanMap中，存放到Map<Class<?>,Object> BEAN_MAP中去。
+6  ProxyManager中生成代理对象的过程：利用一个 private List<Proxy>  proxyList对象，doProxyChain()方法会依据一个pos变量从proxyList取出一个代理对象（每次执行后
+   pos变量会++）， 并执行该对象的doProxy(ProxyChain proxyChain)方法，在doProxy方法中会再次调用doProxyChain()方法，这样就组成了一个链式的执行结构。
+   
 
 

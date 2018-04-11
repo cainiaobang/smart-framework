@@ -1,8 +1,14 @@
 IOC实现机制：
-1：在类ClassHelper中借助类 ClassUtil找出指定路径下的所有类及其实例集合Map<Class<?>,Object> BEAN_MAP。
-2：在类IocHelper中对BEAN_MAP中被注解：Inject标注的实例域进行注入。
+1：在类ClassHelper中借助类 ClassUtil找出指定路径下的所有类集合：Set<CLass<?>>
+2  在BeanHelper中借助反射，生成类及其实例集合Map<Class<?>,Object> BEAN_MAP。
+3：依赖注入的实现：在类IocHelper中，遍历BEAN_MAP集合，通过反射获取类的所有成员变量，继续遍历这些成员变量，判断该变量是否含有Inject注解，如果含有该注解，则通过
+    BEAN_MAP获取类实例，然后通过变量的反射（ void set(Object obj, Object value) )进行注入即可。
+ 
 
 
 框架初始化过程：
-3：在Controll相应结果，并返回。erHelper中生成对应的Map<Request,Handler>   ACTION_MAP集合。
-                                            4：在DispatcherServlet中根据对应的请求路径得到对应的
+4：在ControllerHelper中，利用ClassHelper得到所有的带有Controller注解的class集合，利用反射查看类中的方法是否带有Action注解，通过得到的注解信息
+   生成对应的Map<Request,Handler> ACTION_MAP集合。
+   Request自定义类：有访问路径与访问方法两个变量。
+   Handler自定义类：有处理类与处理方法两个变量。
+5：在DispatcherServlet中根据对应的请求路径得到对应的Handler，通过对方法反射得到返回的结果，并对结果进行对应的处理。

@@ -39,9 +39,12 @@ public class ClassUtil {
                 URL url = urls.nextElement();
                 if (url != null) {
                     String protocal = url.getProtocol();
+                   // System.out.println(protocal);
                     if (protocal.equals("file")) {
                         // space's url code "%20"
                         String packagePath = url.getPath().replaceAll("%20", " ");
+                      //  System.out.println(url.getPath()+"     ");
+                        //System.out.println(packagePath);
                         addClass(classSet,packagePath,packageName);
                     }else if(protocal.equals("jar")){
                         JarURLConnection jarURLConnection =(JarURLConnection)url.openConnection();
@@ -113,5 +116,6 @@ public class ClassUtil {
            String packageName="org.smart4j.framework.bean";
            Set<Class<?>> classSet=new HashSet<Class<?>>();
            classSet=getClassSet(packageName);
+           System.out.println(classSet);
         }
 }
