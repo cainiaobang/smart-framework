@@ -17,10 +17,13 @@ public class Param {
         this.formParamList = formParamList;
     }
 
+
     public Param(List<FormParam> formParamList, List<FileParam> fileParamList) {
         this.formParamList = formParamList;
         this.fileParamList = fileParamList;
     }
+
+
     public Map<String ,Object> getFieldMap(){
         Map<String,Object> fieldMap=new HashMap<String,Object>();
         if(!CollectionUtil.isEmpty(formParamList)){
@@ -35,6 +38,7 @@ public class Param {
         }
         return fieldMap;
     }
+
 
 
     public Map<String,List<FileParam>> getFileMap(){
@@ -55,9 +59,13 @@ public class Param {
         return fileMap;
     }
 
+
+
     public List<FileParam> getFileList(String fieldName){
         return getFileMap().get(fieldName);
     }
+
+
 
     public FileParam getFile(String fieldName){
         List<FileParam> fileParamList=getFileList(fieldName);
@@ -71,13 +79,16 @@ public class Param {
         return CollectionUtil.isEmpty(formParamList)&& CollectionUtil.isEmpty(fileParamList);
     }
 
+
     public String getString(String name){
         return CastUtil.castString(getFieldMap().get(name));
     }
 
+
     public double getDouble(String name){
         return CastUtil.castDouble(getFieldMap().get(name));
     }
+
 
     public Long getLong(String name){
         return CastUtil.castLong(getFieldMap().get(name));

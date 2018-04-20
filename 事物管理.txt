@@ -1,1 +1,22 @@
 利用面向切面编程实现了一个简单的事物管理逻辑。
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Tranction{
+}
+该注解只能用于方法级别。
+
+
+编写事物代理切面类：
+public class TransactionProxy implements Proxy{
+......
+}
+
+
+在AopHelper中添加事物管理机制，利用classHelper.getClassSetByAnnotation(Service.class)
+找到所有的被Service注解标注的类。
+在proxyMap中添加proxyMap.put(TransactionProxy.class,serviceClassSet);
+
+
+
+
